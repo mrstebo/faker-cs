@@ -14,8 +14,9 @@
         string UkCounties { get; }
         string UkCountry { get; }
         string UkPostCode { get; }
+        string AddressFormat { get; }
     }
-    
+
     internal class AddressResource : IAddressResource
     {
         public string Country => Resources.Address.Country;
@@ -30,5 +31,6 @@
         public string UkCounties => Resources.Address.UkCounties;
         public string UkCountry => Resources.Address.UkCountry;
         public string UkPostCode => Resources.Address.UkPostCode;
+        public string AddressFormat => Resources.Address.AddressFormat;
     }
 }

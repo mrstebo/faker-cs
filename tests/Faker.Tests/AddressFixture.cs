@@ -12,7 +12,7 @@ namespace Faker.Tests
         [TestFixtureSetUp]
         public void Setup()
         {
-            Thread.CurrentThread.CurrentCulture   = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             
             _address = new Address(new ResourceWrapper());

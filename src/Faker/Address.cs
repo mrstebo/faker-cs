@@ -53,7 +53,7 @@ namespace Faker
             };
             _streetAddressFormats = new List<Func<string>>
             {
-                () => string.Format(Resources.Address.AddressFormat.Split(Config.Separator).Random().Trim(), StreetName())
+                () => string.Format(_resourceWrapper.Address.AddressFormat.Split(Config.Separator).Random().Trim(), StreetName())
             };
         }
 
