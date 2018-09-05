@@ -136,6 +136,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Phone.resx</DependentUpon>
     </Compile>
+    <Compile Include="Wrappers\AddressResource.cs" />
+    <Compile Include="Wrappers\ResourceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
