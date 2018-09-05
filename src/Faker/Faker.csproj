@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Wrappers\AddressResource.cs" />
     <Compile Include="Wrappers\CompanyResource.cs" />
+    <Compile Include="Wrappers\EventsResource.cs" />
     <Compile Include="Wrappers\ResourceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
