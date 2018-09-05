@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
+using Faker.Wrappers;
 using NUnit.Framework;
 
 namespace Faker.Tests
@@ -17,64 +18,23 @@ namespace Faker.Tests
     [TestFixture]
     public class CultureInfoFixture
     {
-        private const string DefaultCultureInfoString = "en-US";
-
-        #region Setup/TearDown
         [SetUp]
         public void Setup()
         {
-            SetCultureToDefault();
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            
+            _lorem = new Lorem(new ResourceWrapper());
         }
 
-        [TearDown]
-        public void TearDown()
-        {
-            SetCultureToDefault();
-        } 
-        #endregion
+        private ILorem _lorem;
 
-        #region TESTS
         [Test]
         public void Should_Be_Default()
         {
-            var expected = GetFirstDefaultWord();
-            var actual = Lorem.GetFirstWord();
+            var expected = _lorem.GetFirstWord();
+            var actual = _lorem.GetFirstWord();
             Assert.AreEqual(expected, actual);
         }
-
-        [Test]
-        public void Should_Be_German()
-        {
-            var expected = GetFirstGermanWord();
-            var actual = Lorem.GetFirstWord();
-            Assert.AreNotEqual(expected, actual);
-        } 
-        #endregion
-
-        #region Helper
-        private void SetCultureToDefault()
-        {
-            SetCurrentCulture(DefaultCultureInfoString);
-        }
-
-        private void SetCurrentCulture(string cultureInfoString)
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureInfoString);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureInfoString);
-        }
-
-        private string GetFirstDefaultWord()
-        {
-            return Lorem.GetFirstWord();
-        }
-
-        private string GetFirstGermanWord()
-        {
-            SetCurrentCulture("de-DE");
-            var result = Lorem.GetFirstWord();
-            SetCultureToDefault();
-            return result;
-        }
-        #endregion
     }
 }
