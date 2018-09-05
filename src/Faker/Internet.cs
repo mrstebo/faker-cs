@@ -40,7 +40,7 @@ namespace Faker
 
         public static string DomainWord()
         {
-            return Company.Name().Split(' ').First().AlphanumericOnly().ToLowerInvariant();
+            return new Company().Name().Split(' ').First().AlphanumericOnly().ToLowerInvariant();
         }
 
         public static string DomainSuffix()

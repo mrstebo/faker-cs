@@ -137,6 +137,7 @@
       <DependentUpon>Phone.resx</DependentUpon>
     </Compile>
     <Compile Include="Wrappers\AddressResource.cs" />
+    <Compile Include="Wrappers\CompanyResource.cs" />
     <Compile Include="Wrappers\ResourceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>

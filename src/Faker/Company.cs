@@ -1,33 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 using Faker.Extensions;
+using Faker.Wrappers;
 
 namespace Faker
 {
-    public static class Company
+    public interface ICompany
     {
-        public static string Name()
+        string Name();
+        string Suffix();
+        string CatchPhrase();
+        string BS();
+    }
+    
+    internal class Company : ICompany
+    {
+        private readonly IResourceWrapper _resourceWrapper;
+        private readonly IEnumerable<Func<string>> _nameFormats;
+
+        public Company()
+            : this(new ResourceWrapper())
         {
-            return NameFormats.Random();
         }
 
-        public static string Suffix()
+        internal Company(IResourceWrapper resourceWrapper)
         {
-            return Resources.Company.Suffix.Split(Config.Separator).Random();
+            _resourceWrapper = resourceWrapper;
+            _nameFormats = new List<Func<string>>
+            {
+                () => string.Format("{0} {1}", Faker.Name.Last(), Suffix()),
+                () => string.Format("{0}-{1}", Faker.Name.Last(), Faker.Name.Last()),
+                () => string.Format("{0}, {1} {2} {3}", Faker.Name.Last(), Faker.Name.Last(),
+                    _resourceWrapper.Company.And,
+                    Faker.Name.Last()),
+            };
+        }
+        
+        public string Name()
+        {
+            return _nameFormats.Random();
+        }
+
+        public string Suffix()
+        {
+            return _resourceWrapper.Company.Suffix.Split(Config.Separator).Random();
         }
 
         /// <summary>
         /// Generate a buzzword-laden catch phrase.
         /// Wordlist from http://www.1728.com/buzzword.htm
         /// </summary>
-        public static string CatchPhrase()
+        public string CatchPhrase()
         {
-            return String.Join(" ",
+            return string.Join(" ",
                                new[]
                                {
-                                   Resources.Company.Buzzwords1.Split(Config.Separator).Random(),
-                                   Resources.Company.Buzzwords2.Split(Config.Separator).Random(),
-                                   Resources.Company.Buzzwords3.Split(Config.Separator).Random()
+                                   _resourceWrapper.Company.Buzzwords1.Split(Config.Separator).Random(),
+                                   _resourceWrapper.Company.Buzzwords2.Split(Config.Separator).Random(),
+                                   _resourceWrapper.Company.Buzzwords3.Split(Config.Separator).Random()
                                });
         }
 
@@ -35,24 +65,15 @@ namespace Faker
         /// When a straight answer won't do, BS to the rescue!
         /// Wordlist from http://dack.com/web/bullshit.html
         /// </summary>
-        public static string BS()
+        public string BS()
         {
-            return String.Join(" ",
+            return string.Join(" ",
                                new[]
                                {
-                                   Resources.Company.BS1.Split(Config.Separator).Random(),
-                                   Resources.Company.BS2.Split(Config.Separator).Random(),
-                                   Resources.Company.BS3.Split(Config.Separator).Random()
+                                   _resourceWrapper.Company.BS1.Split(Config.Separator).Random(),
+                                   _resourceWrapper.Company.BS2.Split(Config.Separator).Random(),
+                                   _resourceWrapper.Company.BS3.Split(Config.Separator).Random()
                                });
         }
-
-        #region Format Mappings
-        private static readonly IEnumerable<Func<string>> NameFormats = new List<Func<string>>
-        {
-            () => string.Format("{0} {1}", Faker.Name.Last(), Suffix()),
-            () => string.Format("{0}-{1}", Faker.Name.Last(), Faker.Name.Last()),
-            () => string.Format("{0}, {1} {2} {3}", Faker.Name.Last(), Faker.Name.Last(), Resources.Company.And, Faker.Name.Last()),
-        };
-        #endregion
     }
 }
