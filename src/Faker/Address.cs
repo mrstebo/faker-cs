@@ -135,10 +135,6 @@ namespace Faker
             double lng = Math.Round((rnd.NextDouble()*360) - 180, 4); // between -180 to 180
             return new LatLng(lat, lng);
         }
-
-        #region Format Mappings
-        
-        #endregion
     }
 
     public class LatLng

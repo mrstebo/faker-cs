@@ -9,8 +9,8 @@ namespace Faker.Tests
     [TestFixture]
     public class AddressFixture
     {
-        [TestFixtureSetUp]
-        public void Setup()
+        [SetUp]
+        public void SetUp()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
