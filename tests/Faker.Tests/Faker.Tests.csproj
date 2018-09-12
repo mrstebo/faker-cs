@@ -85,6 +85,7 @@
     <Compile Include="Fakers\CompanyFakerFixture.cs" />
     <Compile Include="Fakers\EventsFakerFixture.cs" />
     <Compile Include="Fakers\LoremFakerFixture.cs" />
+    <Compile Include="Fakers\NameFakerFixture.cs" />
     <Compile Include="InternetFixture.cs" />
     <Compile Include="LoremFixture.cs" />
     <Compile Include="NameFixture.cs" />

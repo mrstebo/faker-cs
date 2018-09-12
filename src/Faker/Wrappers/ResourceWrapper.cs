@@ -6,6 +6,7 @@
         ICompanyResource Company { get; }
         IEventsResource Events { get; }
         ILoremResource Lorem { get; }
+        INameResource Name { get; }
     }
 
     internal class ResourceWrapper : IResourceWrapper
@@ -14,5 +15,6 @@
         public ICompanyResource Company { get; } = new CompanyResource();
         public IEventsResource Events { get; } = new EventsResource();
         public ILoremResource Lorem { get; } = new LoremResource();
+        public INameResource Name { get; } = new NameResource();
     }
 }
