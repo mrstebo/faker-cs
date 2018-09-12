@@ -26,7 +26,7 @@ namespace Faker
         internal FakerInstance()
         {
             Address = new AddressFaker(this);
-            Company = new CompanyFaker();
+            Company = new CompanyFaker(this);
             Events = new EventsFaker();
             Lorem = new LoremFaker();
             Internet = new InternetFaker(this);

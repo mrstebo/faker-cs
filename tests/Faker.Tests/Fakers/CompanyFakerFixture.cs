@@ -14,9 +14,11 @@ namespace Faker.Tests.Fakers
         [SetUp]
         public void SetUp()
         {
-            _company = new CompanyFaker(new ResourceWrapper());
+            _faker = new FakerInstance();
+            _company = new CompanyFaker(_faker, new ResourceWrapper());
         }
 
+        private IFaker _faker;
         private ICompanyFaker _company;
         
         [Test]
