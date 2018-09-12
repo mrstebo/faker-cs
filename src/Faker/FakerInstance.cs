@@ -8,6 +8,8 @@ namespace Faker
         ICompanyFaker Company { get; }
         IEventsFaker Events { get; }
         ILoremFaker Lorem { get; }
+        IInternetFaker Internet { get; }
+        INameFaker Name { get; }
     }
     
     internal class FakerInstance : IFaker
@@ -16,6 +18,8 @@ namespace Faker
         public ICompanyFaker Company { get; }
         public IEventsFaker Events { get; }
         public ILoremFaker Lorem { get; }
+        public IInternetFaker Internet { get; }
+        public INameFaker Name { get; }
 
         internal FakerInstance()
         {
@@ -23,6 +27,8 @@ namespace Faker
             Company = new CompanyFaker();
             Events = new EventsFaker();
             Lorem = new LoremFaker();
+            Internet = new InternetFaker();
+            Name = new NameFaker();
         }
     }
 }
