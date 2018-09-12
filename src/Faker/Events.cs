@@ -1,36 +1,18 @@
-﻿using Faker.Extensions;
-using Faker.Wrappers;
+﻿using System;
+using Faker.Extensions;
 
 namespace Faker
 {
-    public interface IEvents
+    public static class Events
     {
-        string Activity();
-        string Season();
-        string Name();
-    }
-    
-    internal class Events : IEvents
-    {
-        private readonly IResourceWrapper _resourceWrapper;
 
-        public Events()
-            : this(new ResourceWrapper())
+        public static string Activity()
         {
+            return Resources.Events.Activity.Split(Config.Separator).Random();
         }
-
-        internal Events(IResourceWrapper resourceWrapper)
+        public static string Season()
         {
-            _resourceWrapper = resourceWrapper;
-        }
-
-        public string Activity()
-        {
-            return _resourceWrapper.Events.Activity.Split(Config.Separator).Random();
-        }
-        public string Season()
-        {
-            return _resourceWrapper.Events.Season.Split(Config.Separator).Random();
+            return Resources.Events.Season.Split(Config.Separator).Random();
         }
 
 
@@ -38,14 +20,14 @@ namespace Faker
         /// Generate a buzzword-laden catch phrase.
         /// Wordlist from http://www.1728.com/buzzword.htm
         /// </summary>
-        public string Name()
+        public static string Name()
         {
-            return string.Join(" ",
-                               new[]
-                               {
-                                   _resourceWrapper.Events.Season.Split(Config.Separator).Random(),
-                                   _resourceWrapper.Events.Activity.Split(Config.Separator).Random(),
-                               });
+            return String.Join(" ",
+                new[]
+                {
+                    Resources.Events.Season.Split(Config.Separator).Random(),
+                    Resources.Events.Activity.Split(Config.Separator).Random(),
+                });
         }
 
 

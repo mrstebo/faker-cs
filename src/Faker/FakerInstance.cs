@@ -1,4 +1,6 @@
-﻿namespace Faker
+﻿using Faker.Fakers;
+
+namespace Faker
 {
     public interface IFaker
     {
@@ -17,10 +19,10 @@
 
         internal FakerInstance()
         {
-            Address = new Address();
-            Company = new Company();
-            Events = new Events();
-            Lorem = new Lorem();
+            Address = new AddressFaker();
+            Company = new CompanyFaker();
+            Events = new EventsFaker();
+            Lorem = new LoremFaker();
         }
     }
 }

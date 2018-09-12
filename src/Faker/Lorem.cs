@@ -2,53 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using Faker.Extensions;
-using Faker.Wrappers;
 
 namespace Faker
 {
-    public interface ILorem
+    public static class Lorem
     {
-        IEnumerable<string> Words(int count);
-        string GetFirstWord();
-        string Sentence(int minWordCount = 4);
-        IEnumerable<string> Sentences(int sentenceCount);
-        string Paragraph(int minSentenceCount = 3);
-        IEnumerable<string> Paragraphs(int paragraphCount);
-    }
-    
-    public class Lorem : ILorem
-    {
-        private readonly IResourceWrapper _resourceWrapper;
-
-        public Lorem()
-            : this(new ResourceWrapper())
-        {
-        }
-
-        internal Lorem(IResourceWrapper resourceWrapper)
-        {
-            _resourceWrapper = resourceWrapper;
-        }
-        
         /// <summary>
         /// Get a random collection of words.
         /// </summary>
         /// <param name="count">Number of words required</param>
         /// <returns></returns>
-        public IEnumerable<string> Words(int count)
+        public static IEnumerable<string> Words(int count)
         {
             if (count <= 0) throw new ArgumentException("Count must be greater than zero", "count");
 
-            return count.Times(x => _resourceWrapper.Lorem.Words.Split(Config.Separator).Random());
+            return count.Times(x => Resources.Lorem.Words.Split(Config.Separator).Random());
         }
 
         /// <summary>
         /// Get the first word of the random word collection. Useful for unit tests.
         /// </summary>
         /// <returns></returns>
-        public string GetFirstWord()
+        public static string GetFirstWord()
         {
-            return _resourceWrapper.Lorem.Words.Split(Config.Separator).First();
+            return Resources.Lorem.Words.Split(Config.Separator).First();
         }
 
         /// <summary>
@@ -56,30 +33,40 @@ namespace Faker
         /// </summary>
         /// <param name="minWordCount">Minimum number of words required</param>
         /// <returns></returns>
-        public string Sentence(int minWordCount = 4)
+        public static string Sentence(int minWordCount)
         {
-            if (minWordCount <= 0) throw new ArgumentException("Count must be greater than zero", nameof(minWordCount));
+            if (minWordCount <= 0) throw new ArgumentException("Count must be greater than zero", "minWordCount");
 
             return string.Join(" ", Words(minWordCount + RandomNumber.Next(6)).ToArray()).Capitalise() + ".";
         }
 
-        public IEnumerable<string> Sentences(int sentenceCount)
+        public static string Sentence()
         {
-            if (sentenceCount <= 0) throw new ArgumentException("Count must be greater than zero", nameof(sentenceCount));
+            return Sentence(4);
+        }
+
+        public static IEnumerable<string> Sentences(int sentenceCount)
+        {
+            if (sentenceCount <= 0) throw new ArgumentException("Count must be greater than zero", "sentenceCount");
 
             return sentenceCount.Times(x => Sentence());
         }
 
-        public string Paragraph(int minSentenceCount = 3)
+        public static string Paragraph(int minSentenceCount)
         {
-            if (minSentenceCount <= 0) throw new ArgumentException("Count must be greater than zero", nameof(minSentenceCount));
+            if (minSentenceCount <= 0) throw new ArgumentException("Count must be greater than zero", "minSentenceCount");
 
             return string.Join(" ", Sentences(minSentenceCount + RandomNumber.Next(3)).ToArray());
         }
 
-        public IEnumerable<string> Paragraphs(int paragraphCount)
+        public static string Paragraph()
         {
-            if (paragraphCount <= 0) throw new ArgumentException("Count must be greater than zero", nameof(paragraphCount));
+            return Paragraph(3);
+        }
+
+        public static IEnumerable<string> Paragraphs(int paragraphCount)
+        {
+            if (paragraphCount <= 0) throw new ArgumentException("Count must be greater than zero", "paragraphCount");
 
             return paragraphCount.Times(x => Paragraph());
         }

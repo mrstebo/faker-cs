@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
+using Faker.Fakers;
 using Faker.Wrappers;
 using NUnit.Framework;
 
@@ -24,7 +25,7 @@ namespace Faker.Tests
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             
-            _lorem = new Lorem(new ResourceWrapper());
+            _lorem = new LoremFaker(new ResourceWrapper());
         }
 
         private ILorem _lorem;
