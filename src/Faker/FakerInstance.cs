@@ -10,6 +10,7 @@ namespace Faker
         ILoremFaker Lorem { get; }
         IInternetFaker Internet { get; }
         INameFaker Name { get; }
+        IPhoneFaker Phone { get; }
     }
     
     internal class FakerInstance : IFaker
@@ -20,6 +21,7 @@ namespace Faker
         public ILoremFaker Lorem { get; }
         public IInternetFaker Internet { get; }
         public INameFaker Name { get; }
+        public IPhoneFaker Phone { get; }
 
         internal FakerInstance()
         {
@@ -29,6 +31,7 @@ namespace Faker
             Lorem = new LoremFaker();
             Internet = new InternetFaker();
             Name = new NameFaker();
+            Phone = new PhoneFaker();
         }
     }
 }

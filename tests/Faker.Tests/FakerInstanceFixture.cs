@@ -49,5 +49,11 @@ namespace Faker.Tests
         {
             Assert.IsInstanceOf<INameFaker>(_faker.Name);
         }
+
+        [Test]
+        public void Phone_returns_IPhoneFaker()
+        {
+            Assert.IsInstanceOf<IPhoneFaker>(_faker.Phone);
+        }
     }
 }

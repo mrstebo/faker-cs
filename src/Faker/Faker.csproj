@@ -83,6 +83,7 @@
     <Compile Include="Fakers\InternetFaker.cs" />
     <Compile Include="Fakers\LoremFaker.cs" />
     <Compile Include="Fakers\NameFaker.cs" />
+    <Compile Include="Fakers\PhoneFaker.cs" />
     <Compile Include="Internet.cs" />
     <Compile Include="Lorem.cs" />
     <Compile Include="Name.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Wrappers\EventsResource.cs" />
     <Compile Include="Wrappers\LoremResource.cs" />
     <Compile Include="Wrappers\NameResource.cs" />
+    <Compile Include="Wrappers\PhoneResource.cs" />
     <Compile Include="Wrappers\ResourceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>

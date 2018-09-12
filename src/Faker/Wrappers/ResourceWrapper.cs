@@ -7,6 +7,7 @@
         IEventsResource Events { get; }
         ILoremResource Lorem { get; }
         INameResource Name { get; }
+        IPhoneResource Phone { get; }
     }
 
     internal class ResourceWrapper : IResourceWrapper
@@ -16,5 +17,6 @@
         public IEventsResource Events { get; } = new EventsResource();
         public ILoremResource Lorem { get; } = new LoremResource();
         public INameResource Name { get; } = new NameResource();
+        public IPhoneResource Phone { get; } = new PhoneResource();
     }
 }
