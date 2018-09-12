@@ -26,30 +26,32 @@ namespace Faker.Fakers
     
     internal class AddressFaker : IAddressFaker
     {
+        private readonly IFaker _faker;
         private readonly IResourceWrapper _resourceWrapper;
         private readonly IEnumerable<Func<string>> _cityFormats;
         private readonly IEnumerable<Func<string[]>> _streetFormats;
         private readonly IEnumerable<Func<string>> _streetAddressFormats;
         
-        public AddressFaker()
-            : this(new ResourceWrapper())
+        public AddressFaker(IFaker faker)
+            : this(faker, new ResourceWrapper())
         {
         }
 
-        internal AddressFaker(IResourceWrapper resourceWrapper)
+        internal AddressFaker(IFaker faker, IResourceWrapper resourceWrapper)
         {
+            _faker = faker;
             _resourceWrapper = resourceWrapper;
             _cityFormats = new List<Func<string>>
             {
-                () => string.Format("{0} {1}{2}", CityPrefix(), Name.First(), CitySufix()),
-                () => string.Format("{0} {1}", CityPrefix(), Name.First()),
-                () => string.Format("{0}{1}", Name.First(), CitySufix()),
-                () => string.Format("{0}{1}", Name.Last(), CitySufix())
+                () => string.Format("{0} {1}{2}", CityPrefix(), _faker.Name.First(), CitySufix()),
+                () => string.Format("{0} {1}", CityPrefix(), _faker.Name.First()),
+                () => string.Format("{0}{1}", _faker.Name.First(), CitySufix()),
+                () => string.Format("{0}{1}", _faker.Name.Last(), CitySufix())
             };
             _streetFormats = new List<Func<string[]>>
             {
-                () => new[] {Name.Last(), StreetSuffix()},
-                () => new[] {Name.First(), StreetSuffix()}
+                () => new[] {_faker.Name.Last(), StreetSuffix()},
+                () => new[] {_faker.Name.First(), StreetSuffix()}
             };
             _streetAddressFormats = new List<Func<string>>
             {
@@ -130,9 +132,9 @@ namespace Faker.Fakers
 
         public LatLng LatLng()
         {
-            Random rnd = new Random();
-            double lat = Math.Round((rnd.NextDouble()*170)- 85, 4); // between -85 to 85
-            double lng = Math.Round((rnd.NextDouble()*360) - 180, 4); // between -180 to 180
+            var rnd = new Random();
+            var lat = Math.Round((rnd.NextDouble()*170)- 85, 4); // between -85 to 85
+            var lng = Math.Round((rnd.NextDouble()*360) - 180, 4); // between -180 to 180
             return new LatLng(lat, lng);
         }
     }

@@ -16,9 +16,11 @@ namespace Faker.Tests.Fakers
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             
-            _address = new AddressFaker(new ResourceWrapper());
+            _faker = new FakerInstance();
+            _address = new AddressFaker(_faker, new ResourceWrapper());
         }
 
+        private IFaker _faker;
         private IAddressFaker _address;
 
         [Test]
