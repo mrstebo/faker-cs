@@ -11,9 +11,11 @@ namespace Faker.Tests.Fakers
         [SetUp]
         public void SetUp()
         {
-            _internet = new InternetFaker(new ResourceWrapper());
+            _faker = new FakerInstance();
+            _internet = new InternetFaker(_faker, new ResourceWrapper());
         }
 
+        private IFaker _faker;
         private IInternetFaker _internet;
         
         [Test]

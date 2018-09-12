@@ -29,7 +29,7 @@ namespace Faker
             Company = new CompanyFaker();
             Events = new EventsFaker();
             Lorem = new LoremFaker();
-            Internet = new InternetFaker();
+            Internet = new InternetFaker(this);
             Name = new NameFaker();
             Phone = new PhoneFaker();
         }

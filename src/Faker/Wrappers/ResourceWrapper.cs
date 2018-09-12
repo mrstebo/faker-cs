@@ -5,6 +5,7 @@
         IAddressResource Address { get; }
         ICompanyResource Company { get; }
         IEventsResource Events { get; }
+        IInternetResource Internet { get; }
         ILoremResource Lorem { get; }
         INameResource Name { get; }
         IPhoneResource Phone { get; }
@@ -15,6 +16,7 @@
         public IAddressResource Address { get; } = new AddressResource();
         public ICompanyResource Company { get; } = new CompanyResource();
         public IEventsResource Events { get; } = new EventsResource();
+        public IInternetResource Internet { get; } = new InternetResource();
         public ILoremResource Lorem { get; } = new LoremResource();
         public INameResource Name { get; } = new NameResource();
         public IPhoneResource Phone { get; } = new PhoneResource();

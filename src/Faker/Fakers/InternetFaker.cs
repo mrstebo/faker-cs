@@ -24,23 +24,25 @@ namespace Faker.Fakers
     
     internal class InternetFaker : IInternetFaker
     {
+        private readonly IFaker _faker;
         private readonly IResourceWrapper _resourceWrapper;
         private readonly IEnumerable<Func<string>> _userNameFormats;
         private readonly Random _random;
 
-        public InternetFaker()
-            : this(new ResourceWrapper())
+        public InternetFaker(IFaker faker)
+            : this(faker, new ResourceWrapper())
         {
         }
 
-        internal InternetFaker(IResourceWrapper resourceWrapper)
+        internal InternetFaker(IFaker faker, IResourceWrapper resourceWrapper)
         {
+            _faker = faker;
             _resourceWrapper = resourceWrapper;
             _userNameFormats = new List<Func<string>>
             {
-                () => Name.First().AlphanumericOnly().ToLowerInvariant(),
-                () => string.Format("{0}{1}{2}", Name.First().AlphanumericOnly(), 
-                    new [] { ".", "_" }.Random(), Name.Last().AlphanumericOnly()).ToLowerInvariant()
+                () => _faker.Name.First().AlphanumericOnly().ToLowerInvariant(),
+                () => string.Format("{0}{1}{2}", _faker.Name.First().AlphanumericOnly(), 
+                    new [] { ".", "_" }.Random(), _faker.Name.Last().AlphanumericOnly()).ToLowerInvariant()
             };
             _random = new Random();
         }
@@ -57,7 +59,7 @@ namespace Faker.Fakers
 
         public string FreeEmail()
         {
-            return string.Format("{0}@{1}", UserName(), Resources.Internet.FreeMail.Split(Config.Separator).Random());
+            return string.Format("{0}@{1}", UserName(), _resourceWrapper.Internet.FreeMail.Split(Config.Separator).Random());
         }
 
         public string UserName()
@@ -77,12 +79,12 @@ namespace Faker.Fakers
 
         public string DomainWord()
         {
-            return Company.Name().Split(' ').First().AlphanumericOnly().ToLowerInvariant();
+            return _faker.Company.Name().Split(' ').First().AlphanumericOnly().ToLowerInvariant();
         }
 
         public string DomainSuffix()
         {
-            return Resources.Internet.DomainSuffix.Split(Config.Separator).Random();
+            return _resourceWrapper.Internet.DomainSuffix.Split(Config.Separator).Random();
         }
 
         public string IPv4Address()
@@ -95,7 +97,7 @@ namespace Faker.Fakers
                 _random.Next(min, max).ToString(),
                 _random.Next(min, max).ToString(),
             };
-            return String.Join(".", parts);
+            return string.Join(".", parts);
         }
 
         public string IPv6Address()
