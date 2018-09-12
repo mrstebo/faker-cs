@@ -5,7 +5,7 @@ using Faker.Wrappers;
 
 namespace Faker.Fakers
 {
-    public interface ICompany
+    public interface ICompanyFaker
     {
         string Name();
         string Suffix();
@@ -13,7 +13,7 @@ namespace Faker.Fakers
         string BS();
     }
     
-    internal class CompanyFaker : ICompany
+    internal class CompanyFaker : ICompanyFaker
     {
         private readonly IResourceWrapper _resourceWrapper;
         private readonly IEnumerable<Func<string>> _nameFormats;

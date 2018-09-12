@@ -6,7 +6,7 @@ using Faker.Wrappers;
 
 namespace Faker.Fakers
 {
-    public interface ILorem
+    public interface ILoremFaker
     {
         IEnumerable<string> Words(int count);
         string GetFirstWord();
@@ -16,7 +16,7 @@ namespace Faker.Fakers
         IEnumerable<string> Paragraphs(int paragraphCount);
     }
     
-    public class LoremFaker : ILorem
+    internal class LoremFaker : ILoremFaker
     {
         private readonly IResourceWrapper _resourceWrapper;
 

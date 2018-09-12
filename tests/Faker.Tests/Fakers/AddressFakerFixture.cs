@@ -19,7 +19,7 @@ namespace Faker.Tests.Fakers
             _address = new AddressFaker(new ResourceWrapper());
         }
 
-        private IAddress _address;
+        private IAddressFaker _address;
 
         [Test]
         public void Should_Get_Street_Address()

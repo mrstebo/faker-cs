@@ -17,25 +17,25 @@ namespace Faker.Tests
         [Test]
         public void Address_returns_IAddress()
         {
-            Assert.IsInstanceOf<IAddress>(_faker.Address);
+            Assert.IsInstanceOf<IAddressFaker>(_faker.Address);
         }
 
         [Test]
         public void Company_returns_ICompany()
         {
-            Assert.IsInstanceOf<ICompany>(_faker.Company);
+            Assert.IsInstanceOf<ICompanyFaker>(_faker.Company);
         }
 
         [Test]
         public void Events_returns_IEvents()
         {
-            Assert.IsInstanceOf<IEvents>(_faker.Events);
+            Assert.IsInstanceOf<IEventsFaker>(_faker.Events);
         }
 
         [Test]
         public void Lorem_returns_ILorem()
         {
-            Assert.IsInstanceOf<ILorem>(_faker.Lorem);
+            Assert.IsInstanceOf<ILoremFaker>(_faker.Lorem);
         }
     }
 }

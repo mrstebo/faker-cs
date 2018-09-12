@@ -17,7 +17,7 @@ namespace Faker.Tests.Fakers
             _events = new EventsFaker(new ResourceWrapper());
         }
 
-        private IEvents _events;
+        private IEventsFaker _events;
         
         [Test]
         public void Should_Generate_Name()

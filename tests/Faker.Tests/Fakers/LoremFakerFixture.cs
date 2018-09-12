@@ -20,7 +20,7 @@ namespace Faker.Tests.Fakers
             _lorem = new LoremFaker(new ResourceWrapper());
         }
 
-        private ILorem _lorem;
+        private ILoremFaker _lorem;
         
         [Test]
         public void Should_Return_Word_List()

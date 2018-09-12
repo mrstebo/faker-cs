@@ -5,7 +5,7 @@ using Faker.Wrappers;
 
 namespace Faker.Fakers
 {
-    public interface IAddress
+    public interface IAddressFaker
     {
         string Country();
         string ZipCode();
@@ -24,7 +24,7 @@ namespace Faker.Fakers
         LatLng LatLng();
     }
     
-    internal class AddressFaker : IAddress
+    internal class AddressFaker : IAddressFaker
     {
         private readonly IResourceWrapper _resourceWrapper;
         private readonly IEnumerable<Func<string>> _cityFormats;

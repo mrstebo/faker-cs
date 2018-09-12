@@ -3,14 +3,14 @@ using Faker.Wrappers;
 
 namespace Faker.Fakers
 {
-    public interface IEvents
+    public interface IEventsFaker
     {
         string Activity();
         string Season();
         string Name();
     }
     
-    internal class EventsFaker : IEvents
+    internal class EventsFaker : IEventsFaker
     {
         private readonly IResourceWrapper _resourceWrapper;
 

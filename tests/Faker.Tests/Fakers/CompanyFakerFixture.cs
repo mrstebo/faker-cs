@@ -17,7 +17,7 @@ namespace Faker.Tests.Fakers
             _company = new CompanyFaker(new ResourceWrapper());
         }
 
-        private ICompany _company;
+        private ICompanyFaker _company;
         
         [Test]
         public void Should_Generate_Company_Name()

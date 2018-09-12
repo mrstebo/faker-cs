@@ -28,7 +28,7 @@ namespace Faker.Tests
             _lorem = new LoremFaker(new ResourceWrapper());
         }
 
-        private ILorem _lorem;
+        private ILoremFaker _lorem;
 
         [Test]
         public void Should_Be_Default()
