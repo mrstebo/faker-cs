@@ -80,6 +80,7 @@
     <Compile Include="Fakers\AddressFaker.cs" />
     <Compile Include="Fakers\CompanyFaker.cs" />
     <Compile Include="Fakers\EventsFaker.cs" />
+    <Compile Include="Fakers\InternetFaker.cs" />
     <Compile Include="Fakers\LoremFaker.cs" />
     <Compile Include="Fakers\NameFaker.cs" />
     <Compile Include="Internet.cs" />
