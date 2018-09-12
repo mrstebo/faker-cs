@@ -79,6 +79,8 @@
     <Compile Include="Extensions\ArrayExtensionsFixture.cs" />
     <Compile Include="Extensions\EnumerableExtensionsFixture.cs" />
     <Compile Include="Extensions\StringExtensionsFixture.cs" />
+    <Compile Include="FakerFactoryFixture.cs" />
+    <Compile Include="FakerInstanceFixture.cs" />
     <Compile Include="InternetFixture.cs" />
     <Compile Include="LoremFixture.cs" />
     <Compile Include="NameFixture.cs" />
