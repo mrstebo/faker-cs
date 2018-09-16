@@ -104,16 +104,9 @@ namespace Faker.Fakers
         {
             const int min = 0;
             const int max = 65536;
-            string[] parts = {
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-                _random.Next(min, max).ToString("x"),
-            };
+            var parts = Enumerable.Range(0, 8)
+                .Select(_ => _random.Next(min, max).ToString("x").PadLeft(4, '0'))
+                .ToArray();
             return string.Join(":", parts);
         }
 
